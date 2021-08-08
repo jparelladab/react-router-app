@@ -7,7 +7,7 @@ import Dashboard from "./components/admin/dashboard";
 import ProductDetails from "./components/productDetails";
 import NotFound from "./components/notFound";
 import "./App.css";
-import {Route, Switch} from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 
 class App extends Component {
   render() {
@@ -26,9 +26,13 @@ class App extends Component {
             {/* if you want to pass more props to the component you need to use the render attribute instead and pass */}
             {/* the props inside an arrow function */}
             {/* question marks at the end of the parameter means it's optional. JSX regex expression syntax */}
+            {/* however optional parameters should be included in the query string */}
             <Route path="/posts/:year?/:month?" component={Posts} />
             <Route path="/admin" component={Dashboard} />
-            <Route path="/" component={Home} />
+            <Redirect from="/messages" to="/posts" />
+            <Route path="/" exact component={Home} />
+            <Route path="/not-found" exact component={NotFound} />
+            <Redirect to="/not-found"/>
           </Switch>
           
         </div>
