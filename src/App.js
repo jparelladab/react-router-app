@@ -25,7 +25,8 @@ class App extends Component {
             <Route path="/products" render={(props) => <Products sortBy="newest" {...props} />} />
             {/* if you want to pass more props to the component you need to use the render attribute instead and pass */}
             {/* the props inside an arrow function */}
-            <Route path="/posts/:year/:month" component={Posts} />
+            {/* question marks at the end of the parameter means it's optional. JSX regex expression syntax */}
+            <Route path="/posts/:year?/:month?" component={Posts} />
             <Route path="/admin" component={Dashboard} />
             <Route path="/" component={Home} />
           </Switch>
