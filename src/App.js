@@ -17,10 +17,15 @@ class App extends Component {
         <div className='content'>
           {/* instead of using the "exact keyword within the Route attributes we can use a Switch" */}
           <Switch>
+            {/* to define parameters we have to prefix the param with semicolon */}
+            <Route path="/products/:id" component={ProductDetails}/>
             {/* in the switch if one route matches it disables the rest */}
             {/* order from the most specific to the most general */}
-            <Route path="/products" component={Products} />
-            <Route path="/posts" component={Posts} />
+            {/* the props are default props (history, location, match...) that we can pass if we want them */}
+            <Route path="/products" render={(props) => <Products sortBy="newest" {...props} />} />
+            {/* if you want to pass more props to the component you need to use the render attribute instead and pass */}
+            {/* the props inside an arrow function */}
+            <Route path="/posts/:year/:month" component={Posts} />
             <Route path="/admin" component={Dashboard} />
             <Route path="/" component={Home} />
           </Switch>
