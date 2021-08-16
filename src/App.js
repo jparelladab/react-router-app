@@ -15,13 +15,14 @@ class App extends Component {
       <div>
         <NavBar />
         <div className='content'>
+          {/* if we don't use exact or switch ALL routes that match partially with the url get rendered */}
           {/* instead of using the "exact keyword within the Route attributes we can use a Switch" */}
+          {/* in the switch if one route matches it disables the rest */}
+          {/* order from the most specific to the most general */}
+          {/* the props are default props (history, location, match...) that we can pass if we want them */}
           <Switch>
             {/* to define parameters we have to prefix the param with semicolon */}
             <Route path="/products/:id" component={ProductDetails}/>
-            {/* in the switch if one route matches it disables the rest */}
-            {/* order from the most specific to the most general */}
-            {/* the props are default props (history, location, match...) that we can pass if we want them */}
             <Route path="/products" render={(props) => <Products sortBy="newest" {...props} />} />
             {/* if you want to pass more props to the component you need to use the render attribute instead and pass */}
             {/* the props inside an arrow function */}
@@ -29,6 +30,7 @@ class App extends Component {
             {/* however optional parameters should be included in the query string */}
             <Route path="/posts/:year?/:month?" component={Posts} />
             <Route path="/admin" component={Dashboard} />
+            {/* redirect synonims */}
             <Redirect from="/messages" to="/posts" />
             <Route path="/" exact component={Home} />
             <Route path="/not-found" exact component={NotFound} />
